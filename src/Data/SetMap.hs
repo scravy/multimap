@@ -41,6 +41,7 @@ module Data.SetMap (
 
     -- ** Deletion
     delete,
+    deleteAll,
 
     -- * Traversal
     map,
@@ -122,6 +123,7 @@ empty :: SetMap k a
 -- ^ /O(1)./ The empty multimap.
 empty = SetMap (0, 0, Map.empty)
 
+
 insert :: (Ord k, Ord a) => k -> a -> SetMap k a -> SetMap k a
 -- ^ Insert a new key and value in the map.
 insert k v (SetMap (nk, nv, map))
@@ -133,9 +135,14 @@ insert k v (SetMap (nk, nv, map))
     | otherwise = SetMap (succ nk, succ nv, Map.insert k (Set.singleton v) map)
 
 
-delete :: Ord k => k -> SetMap k a -> SetMap k a
+delete :: (Ord e, Ord k) => k -> e -> SetMap k a -> SetMap k a
+-- ^ Delete a single key/value pair from the map.
+delete = undefined
+
+
+deleteAll :: Ord k => k -> SetMap k a -> SetMap k a
 -- ^ Delete a key and all its values from the map.
-delete k m@(SetMap (nk, nv, map)) = case Map.lookup k map of
+deleteAll k m@(SetMap (nk, nv, map)) = case Map.lookup k map of
     Just v -> SetMap (pred nk, nv - fromIntegral (Set.size v), Map.delete k map)
     _      -> m
 

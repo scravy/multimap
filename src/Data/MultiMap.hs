@@ -41,6 +41,7 @@ module Data.MultiMap (
 
     -- ** Delete
     delete,
+    deleteAll,
 
     -- * Traversal
     map,
@@ -155,9 +156,15 @@ insert k v (MultiMap (nk, nv, map))
     | Map.member k map = MultiMap (nk, succ nv, Map.insert k (v : map Map.! k) map)
     | otherwise = MultiMap (succ nk, succ nv, Map.insert k [v] map)
 
-delete :: Ord k => k -> MultiMap k a -> MultiMap k a
+
+delete :: (Ord k, Ord e) => k -> e -> MultiMap k a -> MultiMap k a
+-- ^ Delete a key/value pair from the map.
+delete = undefined
+
+
+deleteAll :: Ord k => k -> MultiMap k a -> MultiMap k a
 -- ^ /O(log n)./ Delete a key and all its values from the map.
-delete k m@(MultiMap (nk, nv, map)) = case Map.lookup k map of
+deleteAll k m@(MultiMap (nk, nv, map)) = case Map.lookup k map of
     Just v -> MultiMap (pred nk, nv - fromIntegral (length v), Map.delete k map)
     _      -> m
 

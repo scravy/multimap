@@ -1,5 +1,5 @@
 Name:           multimap
-Version:        1.2.1
+Version:        1.3
 Synopsis:       A multimap.
 Description:    This is a simple implementation of a multimap, based on "Data.Map".
                 .
@@ -14,6 +14,9 @@ Description:    This is a simple implementation of a multimap, based on "Data.Ma
                 .
                 [@v1.2.1@]
                     Fixed typos in the documentation.
+                .
+                [@v1.3@]
+                    Changed the signature of @delete@, added @deleteAll@.
                 
 License:        MIT
 License-File:   LICENSE
