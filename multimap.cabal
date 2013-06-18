@@ -29,8 +29,8 @@ Stability:      provisional
 Homepage:       http://hub.darcs.net/scravy/multimap
 
 Source-Repository head
-    type: darcs
-    location: hub.darcs.net:multimap
+    type: git
+    location: https://github.com/scravy/multimap.git
 
 Library
     Exposed-Modules:    Data.MultiMap
