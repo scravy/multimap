@@ -23,7 +23,7 @@ License-File:   LICENSE
 Author:         Julian Fleischer <julian.fleischer@fu-berlin.de>
 Maintainer:     Julian Fleischer <julian.fleischer@fu-berlin.de>
 Build-Type:     Simple
-Cabal-Version:  >= 1.6
+Cabal-Version:  >= 1.10
 Category:       Data Structures
 Stability:      provisional
 Homepage:       http://hub.darcs.net/scravy/multimap
@@ -37,5 +37,8 @@ Library
                         , Data.SetMap
     Build-Depends:      base >= 3 && < 5, containers
     Hs-Source-Dirs:     src
+    default-language:   Haskell2010
+    default-extensions: DeriveDataTypeable
+    ghc-options:        -Wall -fno-warn-name-shadowing
 
 
