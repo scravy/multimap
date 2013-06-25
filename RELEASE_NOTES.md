@@ -8,6 +8,7 @@
       - Reversed the order of arguments of `member` and `notMember` functions to accomodate the standards.
       - `elems` now returns a flattened list of all elements.
       - Switch to a strict version of underlying map.
+      - Added `alterF`
 
     ###Data.BagMultiMap:
       - Changed the signature of `delete`, added `deleteAll`.
