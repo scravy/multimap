@@ -19,7 +19,8 @@ Source-Repository head
 Library
     Exposed-Modules:    Data.BagMultiMap, 
                         Data.SetMultiMap
-    Build-Depends:      base >= 3 && < 5, containers
+    Build-Depends:      base >= 3 && < 5,
+                        containers >= 0.5
     Hs-Source-Dirs:     src
     default-language:   Haskell2010
     default-extensions: DeriveDataTypeable
