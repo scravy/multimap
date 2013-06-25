@@ -9,6 +9,7 @@
       - `elems` now returns a flattened list of all elements.
       - Switch to a strict version of underlying map.
       - Added `alterF`
+      - Added `replace`
 
     ###Data.BagMultiMap:
       - Changed the signature of `delete`, added `deleteAll`.

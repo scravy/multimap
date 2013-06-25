@@ -23,6 +23,7 @@ module Data.SetMultiMap (
 
     -- ** Modification
     insert,
+    replace,
     delete,
     deleteAll,
     alterF,
@@ -127,6 +128,24 @@ delete k v = SetMultiMap . Map.update update k . toMap where
 deleteAll :: Ord k => k -> SetMultiMap k a -> SetMultiMap k a
 -- ^ /O(log n)./ Delete a key and all its values from the map.
 deleteAll k = SetMultiMap . Map.delete k . toMap
+
+
+-- | /O(log n)./ Replace a value at a given key with a new value.
+replace 
+  :: (Ord k, Ord v) 
+  => k 
+  -> v 
+  -- ^ Value to replace
+  -> v 
+  -- ^ New value
+  -> SetMultiMap k v -> SetMultiMap k v
+replace k v v' (SetMultiMap m) = 
+  SetMultiMap $ toResult $ 
+  Map.insertLookupWithKey insertLookup k (Set.singleton v') $ m
+  where
+    insertLookup k new old = Set.union new $ Set.delete v old
+    toResult (Just _, m') = m'
+    toResult _ = m
 
 
 map :: (Ord a, Ord b) => (a -> b) -> SetMultiMap k a -> SetMultiMap k b
