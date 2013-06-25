@@ -1,23 +1,7 @@
 Name:           multimap
 Version:        1.3
-Synopsis:       A multimap.
-Description:    This is a simple implementation of a multimap, based on "Data.Map".
-                .
-                [@v1.1@]
-                    @!@ had its arguments flipped. Fixed.
-                    Also added @fromMap@.
-                .
-                [@v1.2@]
-                    Added "Data.SetMap", renamed @Multimap@ to "Data.MultiMap".
-                    Fixed the type of @delete@. Derive instances for @Data@
-                    and @Typeable@.
-                .
-                [@v1.2.1@]
-                    Fixed typos in the documentation.
-                .
-                [@v1.3@]
-                    Changed the signature of @delete@, added @deleteAll@.
-                
+Synopsis:       Different implementations of MultiMap
+Description:    Different implementations of MultiMap. "Data.BagMultiMap" allows duplicate values under the same key, "Data.SetMultiMap" does not.
 License:        MIT
 License-File:   LICENSE
 Author:         Julian Fleischer <julian.fleischer@fu-berlin.de>
