@@ -64,7 +64,7 @@ newtype SetMultiMap k v
       -- | /O(1)./ Return the underlying map of sets.
       toMap :: Map k (Set v) 
     }
-  deriving (Data, Typeable, Eq)
+  deriving (Data, Typeable, Eq, Ord)
 
 instance (Show k, Show v) => Show (SetMultiMap k v) where
   show m = "fromList " ++ show (toAscList m)
