@@ -45,7 +45,8 @@ module Data.SetMultiMap (
 
 
 import Prelude hiding (lookup, map, null, foldr, foldl)
-import qualified Prelude as P
+
+import Data.Monoid
 
 import qualified Data.List as List
 
@@ -56,6 +57,7 @@ import qualified Data.Map.Strict as Map
 import Data.Map.Strict (Map)
 
 import Data.Data
+
 
 
 -- | A `Set`-based MultiMap with keys @k@ and values @v@.
@@ -165,10 +167,8 @@ keys = List.map fst . toAscList
 
 
 -- | /O(n)./ Convert to an ascending list of key-value pairs.
-toAscList :: SetMultiMap k e -> [(k, e)]
-toAscList = Map.foldrWithKey fu [] . toMap where
-  fu ke elSe li = li' ++ li where
-    li' = Set.foldr (\el li -> (ke, el) : li) [] elSe
+toAscList :: SetMultiMap k v -> [(k, v)]
+toAscList = foldrWithKey (\k v r -> (k, v) : r) []
 
 
 -- | /O(n)./ Create from a list of key-value pairs.
@@ -198,3 +198,18 @@ alterF k f m = let
     update items' = SetMultiMap $ if Set.null items' 
       then Map.delete k $ toMap m
       else Map.insert k items' $ toMap m
+
+
+union :: (Ord v, Ord k) => SetMultiMap k v -> SetMultiMap k v -> SetMultiMap k v
+union a b = foldrWithKey insert a b
+
+
+foldrWithKey :: (k -> v -> r -> r) -> r -> SetMultiMap k v -> r
+foldrWithKey f r = Map.foldrWithKey f' r . toMap where
+  f' k set r = Set.foldr (\v r -> f k v r) r set
+
+
+instance (Ord v, Ord k) => Monoid (SetMultiMap k v) where
+  mempty = empty
+  mappend = union
+

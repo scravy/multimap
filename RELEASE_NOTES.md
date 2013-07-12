@@ -2,6 +2,9 @@
   - Reorganized the modules structure and renamed data-types accordingly.
   
     ###Data.SetMultiMap:
+      - Added `union`
+      - Added `foldrWithKey`
+      - Added `Monoid` instance
       - Changed the signature of `delete`, added `deleteAll`.
       - Ditched the internal counters, making the size operation `O(n)`, but increasing performance of most modification operations. 
       - Ditched the redundant `numKeys` and `numValues`. Introduced `keysSize` with an `Int`-type.
