@@ -132,8 +132,8 @@ notMember key = not . member key
 lookup :: Ord k => k -> BagMultiMap k a -> [a]
 -- ^ /O(log n)./ Lookup the value at a key in the map.
 --
--- The function will return the corrsponding values as a List, or the
--- empty list if no values are associated witht the given key.
+-- The function will return the corresponding values as a List, or the
+-- empty list if no values are associated with the given key.
 lookup key (BagMultiMap (_, _, map)) = maybe [] id (Map.lookup key map)
 
 
